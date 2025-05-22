@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { toast } from 'react-toastify'
 import { Check, RefreshCw, Trophy, HelpCircle, Settings as SettingsIcon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { getIcon } from '../utils/iconUtils'
@@ -205,8 +206,8 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
         const distance = Math.sqrt(
           Math.pow(position.x - letterPos.x, 2) + 
           Math.pow(position.y - letterPos.y, 2)
+        )
         
-        // If close enough to a letter, select it
         if (distance < 40) {
           if (!selectedLetters.includes(index)) {
             setSelectedLetters(prev => [...prev, index])
