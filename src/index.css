@@ -109,6 +109,48 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+/* Hint system styles */
+@keyframes highlight-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.hint-overlay {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(138, 92, 247, 0.4);
+  animation: highlight-pulse 1.5s ease-in-out infinite;
+  z-index: 4;
+}
+
+.hint-connection {
+  stroke-dasharray: 8;
+  animation: dash 1.5s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 16;
+  }
+}
+
+.cooldown-timer {
+  @apply relative h-1 bg-surface-200 dark:bg-surface-700 rounded-full overflow-hidden;
+}
+
+.cooldown-progress {
+  @apply absolute left-0 top-0 h-full bg-gradient-to-r from-primary to-secondary transition-all ease-linear;
+}
+
+.hint-pip {
+  @apply w-2 h-2 rounded-full;
+  transition: all 0.3s ease;
+}
+
 /* Letter wheel styles */
 .letter-wheel {
   @apply relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full;
