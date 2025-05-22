@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'react-toastify/dist/ReactToastify.css';
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased text-surface-800 dark:text-surface-100 bg-surface-50 dark:bg-surface-900;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+  
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+  
+  ::selection {
+    @apply bg-primary/30 dark:bg-primary/50;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-dark focus:ring-primary-dark;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary-dark;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary;
+  }
+  
+  .card {
+    @apply rounded-2xl bg-white dark:bg-surface-800 shadow-card p-6;
+  }
+  
+  .card-neu {
+    @apply rounded-2xl bg-surface-100 dark:bg-surface-800 shadow-neu-light dark:shadow-neu-dark p-6;
+  }
+  
+  .input {
+    @apply px-4 py-2 rounded-lg border border-surface-300 dark:border-surface-600 bg-white dark:bg-surface-700 
+           focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary 
+           placeholder:text-surface-400 dark:placeholder:text-surface-500;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
+  }
+}
+
+/* Game-specific animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px 2px rgba(138, 92, 247, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px 5px rgba(138, 92, 247, 0.7);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Letter wheel styles */
+.letter-wheel {
+  @apply relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full;
+}
+
+.letter-cell {
+  @apply absolute flex items-center justify-center font-bold text-2xl cursor-pointer
+         w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full transition-all duration-200
+         bg-white dark:bg-surface-700 shadow-md hover:shadow-lg active:scale-95
+         border-2 border-primary/30 dark:border-primary/20;
+}
+
+.letter-cell.selected {
+  @apply bg-primary text-white scale-110 shadow-lg border-primary;
+}
+
+.letter-cell.correct {
+  @apply bg-green-500 text-white border-green-500;
+}
+
+.word-display {
+  @apply min-h-16 p-4 text-center text-2xl font-bold tracking-wider rounded-xl
+         bg-white/80 dark:bg-surface-800/80 backdrop-blur-sm shadow-md;
+}
+
+.crossword-grid {
+  @apply grid gap-1 p-2 bg-white/50 dark:bg-surface-800/50 backdrop-blur-sm rounded-xl shadow-md;
+}
+
+.crossword-cell {
+  @apply w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border border-surface-300
+         dark:border-surface-600 font-medium text-lg bg-white/70 dark:bg-surface-700/70;
+}
+
+.crossword-cell.filled {
+  @apply bg-primary/20 dark:bg-primary/30 border-primary/50 dark:border-primary/40;
+}
