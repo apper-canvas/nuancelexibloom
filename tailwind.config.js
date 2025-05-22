@@ -7,11 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        // We'll use CSS variables for dynamic theming
+        primary: {
+          // We'll use CSS variables for dynamic theming
           DEFAULT: '#f472b6',
           light: '#f9a8d4',
           dark: '#db2777'
         },
+        secondary: '#f472b6',
         accent: '#06b6d4',
         surface: {
           50: '#f8fafc',   // Lightest
