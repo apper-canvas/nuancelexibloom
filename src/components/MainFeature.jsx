@@ -229,8 +229,8 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
   // Check if word is valid
   const checkWord = () => {
     if (currentWord.length < 2) {
-      // Word is too short but don't show negative feedback
-      setSelectedLetters([])
+      // Word is too short
+      toast.info('Try connecting at least 2 letters!')
       return
     }
     if (currentPuzzle.words.includes(currentWord) && !foundWords.includes(currentWord)) {
@@ -245,14 +245,14 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
         }, 1500)
       }
     } else if (foundWords.includes(currentWord)) {
-      // Word already found
-      toast.info('Nice memory! You already found this word.')
+      // Word already found - positive reinforcement
+      toast.info('Good memory! You already found this word.')
     } else if (currentWord.length >= 2) {
-      // Valid word length but not in our list - give positive feedback anyway
-      toast.success('Creative word! Keep exploring!')
+      // Valid word length but not in our list - always give positive feedback
+      toast.success('Nice try! Keep exploring for more words!')
     } else {
-      // Reset without negative feedback
-      toast.info('Keep trying! Connect more letters.')
+      // Reset with encouragement
+      toast.info('Connect more letters to form words!')
     }
     
     // Reset current selection
@@ -349,7 +349,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
           const isFilled = foundWords.some(word => {
             // Simplified check - if this cell contains a letter that appears at the start of any found word
             return cell !== '' && 
-                  (word.includes(cell)) // Simplified to just check if the letter appears in any found word
+                  word.includes(cell) // Very simplified to just check if the letter appears in any found word
           })
 
           return (
@@ -504,7 +504,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
               
               {!currentWord && (
                 <div className="text-surface-400 dark:text-surface-500">
-                  Connect letters to form words (even short ones!)
+                  Connect letters to form words - even 2-letter words count!
                 </div>
               )}
               

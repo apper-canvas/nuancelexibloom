@@ -97,7 +97,7 @@ const Home = ({ isDarkMode }) => {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-surface-600 dark:text-surface-300 max-w-2xl mx-auto">
-              Simply connect letters to create words - fun and relaxing word discovery!
+              Simply connect letters to create words - no complicated rules, just fun word discovery!
             </p>
           </motion.div>
         </div>
@@ -135,7 +135,7 @@ const Home = ({ isDarkMode }) => {
       {/* Footer */}
       <footer className="w-full py-4 px-4 text-center text-surface-500 dark:text-surface-400 text-sm z-10">
         <div className="container mx-auto">
-          <p>© {new Date().getFullYear()} LexiBloom - A relaxing word puzzle game</p>
+          <p>© {new Date().getFullYear()} LexiBloom - A simple and fun word puzzle game</p>
         </div>
       </footer>
     </div>
