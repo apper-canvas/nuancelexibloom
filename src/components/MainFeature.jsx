@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { toast } from 'react-toastify'
+import { Check, RefreshCw, Trophy, HelpCircle, Settings as SettingsIcon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import { getIcon } from '../utils/iconUtils'
 
 const RefreshIcon = getIcon('refresh-cw')
 const CheckIcon = getIcon('check-circle')
 const XIcon = getIcon('x')
 const HelpCircleIcon = getIcon('help-circle')
-const BrainIcon = getIcon('brain')
+    grid: [ 
 const RotateCcwIcon = getIcon('rotate-ccw')
 const ClockIcon = getIcon('clock')
 
@@ -19,7 +20,7 @@ const puzzleData = [
     words: ['PETAL', 'LEAP', 'STEAL', 'PEAR', 'PALE', 'PEARL', 'TALE'],
     hint: "Think of flowers and gentle movements",
     crossword: [
-      ['P', 'E', 'T', 'A', 'L'],
+  const { currentTheme } = useTheme();
       ['E', '', '', '', 'E'],
       ['A', '', 'T', '', 'A'],
       ['R', '', 'A', '', 'P'],
@@ -27,6 +28,7 @@ const puzzleData = [
     ]
   },
   // Level 2
+  const [currentLevel, setCurrentLevel] = useState('level1');
   {
     letters: ['D', 'R', 'E', 'A', 'M', 'W', 'O'],
     words: ['DREAM', 'WADER', 'WORE', 'MODE', 'ROAM', 'MOWER', 'WORD'],
@@ -207,7 +209,6 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
         const distance = Math.sqrt(
           Math.pow(position.x - letterPos.x, 2) + 
           Math.pow(position.y - letterPos.y, 2)
-        )
         
         // If close enough to a letter, select it
         if (distance < 40) {
@@ -233,7 +234,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
     if (currentWord.length < 3) {
       // Reset if word is too short
       setSelectedLetters([])
-      setCurrentWord('')
+    <div className="relative p-4 max-w-4xl mx-auto min-h-[80vh] flex flex-col" style={{ '--color-primary': currentTheme.primary, '--color-secondary': currentTheme.secondary, '--color-accent': currentTheme.accent }}>
       return
     }
     
@@ -297,7 +298,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
     const unsolvedWords = currentPuzzle.words.filter(word => !foundWords.includes(word))
     
     if (unsolvedWords.length === 0) {
-      toast.info("You've found all words already!")
+                Hints: {Array(hintRemaining).fill().map((_, i) => ( 
       return
     }
     

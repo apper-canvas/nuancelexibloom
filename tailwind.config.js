@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        // We'll use CSS variables for dynamic theming
+        primary: { DEFAULT: 'var(--color-primary)', light: 'var(--color-primary-light)', dark: 'var(--color-primary-dark)' },
+        secondary: { DEFAULT: 'var(--color-secondary)', light: '#f9a8d4', dark: '#db2777' },
         primary: {
           DEFAULT: '#8a5cf7',
           light: '#a78bfa',
