@@ -97,7 +97,7 @@ const Home = ({ isDarkMode }) => {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-surface-600 dark:text-surface-300 max-w-2xl mx-auto">
-              Connect letters to form words in a beautiful, relaxing environment
+              Simply connect letters to create words - fun and relaxing word discovery!
             </p>
           </motion.div>
         </div>
@@ -117,8 +117,8 @@ const Home = ({ isDarkMode }) => {
                 Level {currentLevel} 
                 <span className="ml-2 text-primary dark:text-primary-light">
                   {currentLevel === 1 ? "Blooming Start" : 
-                   currentLevel === 2 ? "Petal Power" : 
-                   currentLevel === 3 ? "Word Garden" : "Master Wordsmith"}
+                   currentLevel === 2 ? "Word Explorer" : 
+                   currentLevel === 3 ? "Letter Play" : "Word Fun"}
                 </span>
               </h2>
             </div>

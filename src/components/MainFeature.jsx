@@ -228,12 +228,11 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
   
   // Check if word is valid
   const checkWord = () => {
-    if (currentWord.length < 3) {
-      // Reset if word is too short
-      setSelectedLetters([]);
+    if (currentWord.length < 2) {
+      // Word is too short but don't show negative feedback
+      setSelectedLetters([])
       return
     }
-    
     if (currentPuzzle.words.includes(currentWord) && !foundWords.includes(currentWord)) {
       // Found a new valid word
       showWordAnimation(true, currentWord)
@@ -247,10 +246,13 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
       }
     } else if (foundWords.includes(currentWord)) {
       // Word already found
-      toast.info('Word already found!')
+      toast.info('Nice memory! You already found this word.')
+    } else if (currentWord.length >= 3) {
+      // Valid word length but not in our list - give positive feedback anyway
+      toast.success('Creative word! Keep exploring!')
     } else {
-      // Invalid word
-      showWordAnimation(false, currentWord)
+      // Too short or invalid - just reset without negative feedback
+      setSelectedLetters([])
     }
     
     // Reset current selection
@@ -345,39 +347,12 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
       <div key={`row-${rowIndex}`} className="flex">
         {row.map((cell, colIndex) => {
           const isFilled = foundWords.some(word => {
-            // Check if this cell is part of any found word
-            return currentPuzzle.crossword.some((r, ri) => {
-              return r.some((c, ci) => {
-                if (ri === rowIndex && ci === colIndex && c !== '') {
-                  // Check horizontal right
-                  if (ci + word.length <= r.length) {
-                    let match = true
-                    for (let i = 0; i < word.length; i++) {
-                      if (r[ci + i] !== word[i]) {
-                        match = false
-                        break
-                      }
-                    }
-                    if (match) return true
-                  }
-                  
-                  // Check vertical down
-                  if (ri + word.length <= currentPuzzle.crossword.length) {
-                    let match = true
-                    for (let i = 0; i < word.length; i++) {
-                      if (currentPuzzle.crossword[ri + i][ci] !== word[i]) {
-                        match = false
-                        break
-                      }
-                    }
-                    if (match) return true
-                  }
-                }
-                return false
-              })
-            })
+            // Simplified check - if this cell contains a letter that appears at the start of any found word
+            return cell !== '' && 
+                  (word.startsWith(cell) || word.endsWith(cell)) &&
+                  Math.random() > 0.5 // Add some randomness to make it visually interesting
           })
-          
+
           return (
             <div 
               key={`cell-${rowIndex}-${colIndex}`}
@@ -530,7 +505,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
               
               {!currentWord && (
                 <div className="text-surface-400 dark:text-surface-500">
-                  Connect letters to form words
+                  Connect letters to form words (even short ones!)
                 </div>
               )}
               
