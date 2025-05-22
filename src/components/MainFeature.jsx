@@ -247,12 +247,12 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
     } else if (foundWords.includes(currentWord)) {
       // Word already found
       toast.info('Nice memory! You already found this word.')
-    } else if (currentWord.length >= 3) {
+    } else if (currentWord.length >= 2) {
       // Valid word length but not in our list - give positive feedback anyway
       toast.success('Creative word! Keep exploring!')
     } else {
-      // Too short or invalid - just reset without negative feedback
-      setSelectedLetters([])
+      // Reset without negative feedback
+      toast.info('Keep trying! Connect more letters.')
     }
     
     // Reset current selection
@@ -349,8 +349,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
           const isFilled = foundWords.some(word => {
             // Simplified check - if this cell contains a letter that appears at the start of any found word
             return cell !== '' && 
-                  (word.startsWith(cell) || word.endsWith(cell)) &&
-                  Math.random() > 0.5 // Add some randomness to make it visually interesting
+                  (word.includes(cell)) // Simplified to just check if the letter appears in any found word
           })
 
           return (
