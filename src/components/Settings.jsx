@@ -114,7 +114,6 @@ const Settings = ({ isOpen, onClose }) => {
                   <div className="color-swatch" style={{ backgroundColor: theme.secondary }}></div>
                   <div className="color-swatch" style={{ backgroundColor: theme.accent }}></div>
                 </div>
-                </div>
               </div>
             ))}
           </div>
