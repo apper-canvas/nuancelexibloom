@@ -8,27 +8,22 @@ const RefreshIcon = getIcon('refresh-cw')
 const CheckIcon = getIcon('check-circle')
 const XIcon = getIcon('x')
 const HelpCircleIcon = getIcon('help-circle')
-    grid: [ 
 const RotateCcwIcon = getIcon('rotate-ccw')
 const ClockIcon = getIcon('clock')
 
 // Game puzzles data
 const puzzleData = [
-  // Level 1
   {
     letters: ['A', 'P', 'E', 'L', 'T', 'S', 'R'],
     words: ['PETAL', 'LEAP', 'STEAL', 'PEAR', 'PALE', 'PEARL', 'TALE'],
     hint: "Think of flowers and gentle movements",
     crossword: [
-  const { currentTheme } = useTheme();
       ['E', '', '', '', 'E'],
       ['A', '', 'T', '', 'A'],
       ['R', '', 'A', '', 'P'],
       ['L', 'E', 'L', 'E', '']
     ]
   },
-  // Level 2
-  const [currentLevel, setCurrentLevel] = useState('level1');
   {
     letters: ['D', 'R', 'E', 'A', 'M', 'W', 'O'],
     words: ['DREAM', 'WADER', 'WORE', 'MODE', 'ROAM', 'MOWER', 'WORD'],
@@ -42,7 +37,6 @@ const puzzleData = [
       ['R', '', '', '', '', '']
     ]
   },
-  // Level 3
   {
     letters: ['B', 'L', 'O', 'S', 'M', 'I', 'N'],
     words: ['BLOOM', 'SOIL', 'LIMB', 'MOONS', 'LOIN', 'SLOB', 'OILS'],
@@ -67,7 +61,8 @@ const HINT_CONFIG = {
 
 const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
   const currentPuzzle = puzzleData[level - 1] || puzzleData[0]
-  
+  const { currentTheme } = useTheme();
+
   const [selectedLetters, setSelectedLetters] = useState([])
   const [currentWord, setCurrentWord] = useState('')
   const [foundWords, setFoundWords] = useState([])
@@ -82,6 +77,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
   const [hintCooldown, setHintCooldown] = useState(0)
   const [activeHint, setActiveHint] = useState(null)
   const cooldownTimerRef = useRef(null)
+  const [currentLevel, setCurrentLevel] = useState('level1');
   
   // Set up letter positions in a circle
   useEffect(() => {
@@ -233,8 +229,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
   const checkWord = () => {
     if (currentWord.length < 3) {
       // Reset if word is too short
-      setSelectedLetters([])
-    <div className="relative p-4 max-w-4xl mx-auto min-h-[80vh] flex flex-col" style={{ '--color-primary': currentTheme.primary, '--color-secondary': currentTheme.secondary, '--color-accent': currentTheme.accent }}>
+      setSelectedLetters([]);
       return
     }
     
@@ -297,8 +292,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
     // Find a word that hasn't been discovered yet
     const unsolvedWords = currentPuzzle.words.filter(word => !foundWords.includes(word))
     
-    if (unsolvedWords.length === 0) {
-                Hints: {Array(hintRemaining).fill().map((_, i) => ( 
+    if (unsolvedWords.length === 0) { 
       return
     }
     
@@ -405,14 +399,14 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="relative p-4 max-w-4xl mx-auto min-h-[80vh] flex flex-col" style={{ '--color-primary': currentTheme.primary, '--color-secondary': currentTheme.secondary, '--color-accent': currentTheme.accent }}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Left column - Word list and controls */}
         <div className="md:col-span-1 order-2 md:order-1">
           <div className="card-neu h-full flex flex-col">
             <div className="mb-4">
               <h3 className="text-xl font-semibold mb-2 flex items-center">
-                <BrainIcon className="w-5 h-5 mr-2 text-primary" />
+                <HelpCircleIcon className="w-5 h-5 mr-2 text-primary" />
                 Word Challenge
               </h3>
               <p className="text-surface-600 dark:text-surface-300 text-sm">
@@ -453,7 +447,7 @@ const MainFeature = ({ level, onLevelComplete, isDarkMode }) => {
                     }`}
                     aria-label="Use a hint"
                   >
-                    <BrainIcon className="w-5 h-5" />
+                    <HelpCircleIcon className="w-5 h-5" />
                     {activeHint ? "Hint Active" : remainingHints <= 0 ? "No Hints Left" : "Use a Hint"}
                   </button>
                   
