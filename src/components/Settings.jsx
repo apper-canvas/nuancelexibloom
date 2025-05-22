@@ -86,7 +86,7 @@ const Settings = ({ isOpen, onClose }) => {
         <div className="mb-8">
           <h3 className="text-lg font-semibold mb-4">Theme Selection</h3>
           
-          <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             {Object.entries(predefinedThemes).map(([key, theme]) => (
               <div 
                 key={key}
@@ -96,6 +96,7 @@ const Settings = ({ isOpen, onClose }) => {
                     : 'border-surface-200 dark:border-surface-700'
                 }`}
                 onClick={() => handleThemeChange(key)}
+                title={`Select ${theme.name} theme`}
               >
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-4 h-4 rounded-full border border-surface-300 flex items-center justify-center">
@@ -103,10 +104,16 @@ const Settings = ({ isOpen, onClose }) => {
                   </div>
                   <span className="font-medium">{theme.name}</span>
                 </div>
-                <div className="flex gap-2 mt-2">
-                  <div className="w-6 h-6 rounded-full" style={{ backgroundColor: theme.primary }}></div>
-                  <div className="w-6 h-6 rounded-full" style={{ backgroundColor: theme.secondary }}></div>
-                  <div className="w-6 h-6 rounded-full" style={{ backgroundColor: theme.accent }}></div>
+                {theme.description && (
+                  <p className="text-xs text-surface-500 dark:text-surface-400 mb-2">
+                    {theme.description}
+                  </p>
+                )}
+                <div className="theme-preview bg-white/50 dark:bg-surface-700/30">
+                  <div className="color-swatch" style={{ backgroundColor: theme.primary }}></div>
+                  <div className="color-swatch" style={{ backgroundColor: theme.secondary }}></div>
+                  <div className="color-swatch" style={{ backgroundColor: theme.accent }}></div>
+                </div>
                 </div>
               </div>
             ))}
@@ -135,8 +142,43 @@ const Settings = ({ isOpen, onClose }) => {
                   </div>
                 </div>
                 
-                {/* Similar inputs for secondary and accent colors */}
+                <div>
+                  <label className="block mb-1 text-sm">Secondary Color</label>
+                  <div className="flex items-center gap-3">
+                    <input 
+                      type="color" 
+                      value={customColors.secondary} 
+                      onChange={(e) => handleColorChange('secondary', e.target.value)}
+                      className="w-10 h-10 rounded cursor-pointer"
+                    />
+                    <input 
+                      type="text" 
+                      value={customColors.secondary} 
+                      onChange={(e) => handleColorChange('secondary', e.target.value)}
+                      className="input text-sm"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block mb-1 text-sm">Accent Color</label>
+                  <div className="flex items-center gap-3">
+                    <input 
+                      type="color" 
+                      value={customColors.accent} 
+                      onChange={(e) => handleColorChange('accent', e.target.value)}
+                      className="w-10 h-10 rounded cursor-pointer"
+                    />
+                    <input 
+                      type="text" 
+                      value={customColors.accent} 
+                      onChange={(e) => handleColorChange('accent', e.target.value)}
+                      className="input text-sm"
+                    />
+                  </div>
+                </div>
               </div>
+              
             </div>
           )}
         </div>

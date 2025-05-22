@@ -4,6 +4,28 @@ import { createContext, useState, useContext, useEffect } from 'react';
 const predefinedThemes = {
   vibrant: {
     name: 'Vibrant',
+    description: 'Energetic purple and pink tones',
+    primary: '#8a5cf7',
+    secondary: '#f472b6',
+    accent: '#06b6d4',
+    background: 'from-indigo-50 to-pink-50',
+    darkBackground: 'from-gray-900 to-purple-900'
+  },
+  forest: {
+    name: 'Forest',
+    description: 'Calming natural green palette',
+    primary: '#059669',
+    secondary: '#65a30d',
+    accent: '#16a34a',
+    background: 'from-green-50 to-emerald-50',
+    darkBackground: 'from-gray-900 to-green-900'
+  },
+  ocean: {
+    name: 'Ocean',
+    description: 'Refreshing blue and teal tones',
+    primary: '#0284c7',
+    secondary: '#0891b2',
+    accent: '#06b6d4',
     primary: '#8a5cf7',
     secondary: '#f472b6',
     accent: '#06b6d4',
@@ -12,6 +34,16 @@ const predefinedThemes = {
   },
   calm: {
     name: 'Calm',
+    description: 'Soothing blue and green shades',
+    primary: '#3b82f6',
+    secondary: '#10b981',
+    accent: '#0ea5e9',
+    background: 'from-blue-50 to-green-50',
+    darkBackground: 'from-gray-900 to-blue-900'
+  },
+  midnight: {
+    name: 'Midnight',
+    description: 'Elegant dark purple and blue',
     primary: '#3b82f6',
     secondary: '#10b981',
     accent: '#0ea5e9',
@@ -20,6 +52,7 @@ const predefinedThemes = {
   },
   sunset: {
     name: 'Sunset',
+    description: 'Warm orange and pink gradient',
     primary: '#f97316',
     secondary: '#ec4899',
     accent: '#f59e0b',
@@ -28,6 +61,7 @@ const predefinedThemes = {
   },
   custom: {
     name: 'Custom',
+    description: 'Your personalized color theme',
     primary: '#8a5cf7',
     secondary: '#f472b6',
     accent: '#06b6d4',
